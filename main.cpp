@@ -1,13 +1,19 @@
 #include <stdio.h>
+#include <iostream>
 #include <string.h>
 #include <openssl/sha.h>
- 
+
+using namespace std;
+
 int main()
 {
     unsigned char digest[SHA512_DIGEST_LENGTH];
-    char string[] = "hello world";
+    char string[1024] = "hello world";
 
-    sprintf(string);
+    for(int i=0; i < 1023; i++) {
+    	cout << string[i];
+    }
+    cout << endl;
     
     SHA512((unsigned char*)&string, strlen(string), (unsigned char*)&digest);    
  
