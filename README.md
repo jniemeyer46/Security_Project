@@ -1,1 +1,1 @@
-gcc sha512_sample1.cpp -o sample1 -lcrypto
+gcc main.cpp -o sample1 -lcrypto

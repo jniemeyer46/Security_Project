@@ -6,6 +6,8 @@ int main()
 {
     unsigned char digest[SHA512_DIGEST_LENGTH];
     char string[] = "hello world";
+
+    sprintf(string);
     
     SHA512((unsigned char*)&string, strlen(string), (unsigned char*)&digest);    
  
