@@ -8,12 +8,10 @@ using namespace std;
 int main()
 {
     unsigned char digest[SHA512_DIGEST_LENGTH];
-    char string[1024] = "hello world";
+    char string[1024];
 
-    for(int i=0; i < 1023; i++) {
-    	cout << string[i];
-    }
-    cout << endl;
+    cout << "1. Enter the name of the file that contains Alice’s public-private key pair: " << endl;
+    cin >> string;
     
     SHA512((unsigned char*)&string, strlen(string), (unsigned char*)&digest);    
  
