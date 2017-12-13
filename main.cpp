@@ -34,7 +34,7 @@ int main()
 	cout << "3. Enter the name of the file that contains Alice’s plaintext message: " << endl;
 	cin >> messageFile;
 
-	fin.open(messageFile);
+	fin.open("\"" + messageFile + "\"");
 	getline(fin, message);
 	fin.close();
 
