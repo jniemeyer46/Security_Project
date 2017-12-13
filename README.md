@@ -1,1 +1,4 @@
-gcc main.cpp -o sample1 -lcrypto
+gcc main.cpp -o main -lcrypto
+
+
+Use ./run.sh to run the project
