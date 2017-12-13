@@ -21,7 +21,6 @@ int main()
 		* 
     */
 
-
     // Obtain the file name with Alice's public-private key
     cout << "1. Enter the name of the file that contains Alice’s public-private key pair: " << endl;
     cin >> AlicekeyFile;
@@ -34,6 +33,7 @@ int main()
 	cout << "3. Enter the name of the file that contains Alice’s plaintext message: " << endl;
 	cin >> messageFile;
 
+	// Open the message file and store the string into a variable
 	fin.open(messageFile.c_str());
 	getline(fin, message);
 	fin.close();
@@ -42,6 +42,8 @@ int main()
 
 	// Obtain the file name that will store the authenticated message (plain text on first line and signature on second line).
 	cout << "4. Enter the output file name to store Alice’s authenticated message: " << endl;
+
+	eval(openssl dgst -sha256 -sign privatekey.pem -out signature.sign file.txt)
 
 	// Obtain the file to store the verification step output
 	cout << "5. Enter the output file name to store the verification steps performed by Bob: " << endl;
