@@ -13,14 +13,6 @@ int main()
     string AlicekeyFile, BobkeyFile, messageFile, message;
     char string[1024];
 
-    /* TO DO:
-		* Create the public-private key pair files and output the created file's name to the screen so that the user can easily enter it.
-
-		* Open the message file and output the string just to make sure everything works correctly
-
-		* 
-    */
-
     // Obtain the file name with Alice's public-private key
     cout << "1. Enter the name of the file that contains Alice’s public-private key pair: " << endl;
     cin >> AlicekeyFile;
@@ -42,8 +34,6 @@ int main()
 
 	// Obtain the file name that will store the authenticated message (plain text on first line and signature on second line).
 	cout << "4. Enter the output file name to store Alice’s authenticated message: " << endl;
-
-	system((openssl dgst -sha256 -sign privatekey.pem -out signature.sign file.txt).c_str());
 
 	// Obtain the file to store the verification step output
 	cout << "5. Enter the output file name to store the verification steps performed by Bob: " << endl;
