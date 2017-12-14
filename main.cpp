@@ -90,12 +90,12 @@ int main() {
 
 	// Open the message file and store the string into a variable
 	fin.open(messageFile.c_str());
-	getline(fin, string);
+	getline(fin, message);
 	fin.close();
 
-	cout << string << endl;
+	cout << message << endl;
 
-	system("openssl dgst -sha512 -sign AlicePrivateKey.pem -out signature.sign messageFile");
+	//system("openssl dgst -sha512 -sign AlicePrivateKey.pem -out signature.sign messageFile");
 
 	// Obtain the file name that will store the authenticated message (plain text on first line and signature on second line).
 	cout << "4. Enter the output file name to store Alice’s authenticated message: " << endl;
