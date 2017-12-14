@@ -9,16 +9,10 @@
 
 using namespace std;
 
-BIGNUM str_to_big(char* str) {
-     BIGNUM result(0);
-     while (*str) {
-         result *= 10;
-         result += (*str - '0');
-         str = str + 1;
-     }
-     
-     return result;
- }
+/*
+I don't know what to do other than use the console command to create the public private keys, I can't figure out how to convert a string
+to a bignum to make it work with the following function, and I also don't see where the d and the n come into play with this.
+So in order to get something done I am just generating the public and private keys with the openssl command line commands...  Sorry.
 
 bool generate_key(int e, int n, int d, string file1, string file2)
 {
@@ -58,13 +52,12 @@ bool generate_key(int e, int n, int d, string file1, string file2)
  
     return (ret == 1);
 }
+*/
 
-int main()
-{
+int main() {
 	ifstream fin;
     unsigned char digest[SHA512_DIGEST_LENGTH];
-    string AlicekeyFile, BobkeyFile, messageFile, message, e;
-    int n, d;
+    string AlicekeyFile, BobkeyFile, messageFile, message;
     char string[1024];
 
     // Obtain the file name with Alice's public-private key
@@ -76,11 +69,8 @@ int main()
     fin >> e >> n >> d;
     fin.close();
 
-    e = str_to_big(e);
-
-    generate_key(e, n, d, "AlicePrivKey.pem", "AlicePubKey.pem");
-
-    cout << e << " " << n << " " << d << endl;
+    // Would be used to generate public private key
+    //generate_key(e, n, d, "AlicePrivKey.pem", "AlicePubKey.pem");
 
     // Obtain the file name with Bob's public-private key
     cout << "2. Enter the name of the file that contains Bob’s public-private key pair: " << endl;
@@ -91,11 +81,8 @@ int main()
     fin >> e >> n >> d;
     fin.close();
 
-    e = str_to_big(e);
-
-    generate_key(e, n, d, "BobPrivKey.pem", "BobPubKey.pem");
-
-    cout << e << " " << n << " " << d << endl;
+    // Would be used to generate public private key
+    //generate_key(e, n, d, "BobPrivKey.pem", "BobPubKey.pem");
 
     // Obtain the file name that has the message in it
 	cout << "3. Enter the name of the file that contains Alice’s plaintext message: " << endl;
@@ -103,12 +90,12 @@ int main()
 
 	// Open the message file and store the string into a variable
 	fin.open(messageFile.c_str());
-	getline(fin, message);
+	getline(fin, string);
 	fin.close();
 
-	cout << message << endl;
+	cout << string << endl;
 
-	//system(openssl dgst -sha512 -sign privatekey.pem -out signature.sign messageFile);
+	system("openssl dgst -sha512 -sign AlicePrivateKey.pem -out signature.sign messageFile");
 
 	// Obtain the file name that will store the authenticated message (plain text on first line and signature on second line).
 	cout << "4. Enter the output file name to store Alice’s authenticated message: " << endl;
