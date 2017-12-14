@@ -13,7 +13,7 @@ bool generate_key(int e, int n, int d, string file1, string file2)
 {
     int             ret = 0;
     RSA             *r = NULL;
-    BIGNUM          *bne = NULL;
+    BIGNUM          *bne = e;
     BIO             *bp_public = NULL, *bp_private = NULL;
  
     int             bits = 2048;
