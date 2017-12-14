@@ -97,7 +97,8 @@ int main() {
 
 	cout << message << endl;
 
-	string test = "openssl dgst -sha512 -sign AlicePrivate.pem -out signature.sign " + messageFile;
+	string test = "openssl dgst -sha512 -sign AlicePrivate.pem -out signature.sign";
+	test = test + messageFile;
 
 	system(test.c_str());
 
