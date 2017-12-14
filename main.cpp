@@ -56,8 +56,9 @@ bool generate_key(int e, int n, int d, string file1, string file2)
 
 int main() {
 	ifstream fin;
+	ofstream fout;
     unsigned char digest[SHA512_DIGEST_LENGTH];
-    string AlicekeyFile, BobkeyFile, messageFile, message;
+    string AlicekeyFile, BobkeyFile, messageFile, message, authenticationFile;
     int e, n, d;
     char string[1024];
 
@@ -100,6 +101,10 @@ int main() {
 
 	// Obtain the file name that will store the authenticated message (plain text on first line and signature on second line).
 	cout << "4. Enter the output file name to store Alice’s authenticated message: " << endl;
+	cin >> authenticationFile;
+
+	fout.open(authenticationFile.c_str());
+	fout.close();
 
 	// Obtain the file to store the verification step output
 	cout << "5. Enter the output file name to store the verification steps performed by Bob: " << endl;
