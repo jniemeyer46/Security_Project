@@ -58,6 +58,7 @@ int main() {
 	ifstream fin;
     unsigned char digest[SHA512_DIGEST_LENGTH];
     string AlicekeyFile, BobkeyFile, messageFile, message;
+    int n, d;
     char string[1024];
 
     // Obtain the file name with Alice's public-private key
