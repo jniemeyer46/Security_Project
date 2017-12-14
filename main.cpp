@@ -98,9 +98,9 @@ int main() {
 
 	cout << message << endl;
 	
-	test = test + messageFile.c_str();
+	test = test + messageFile;
 
-	system(test);
+	system(test.c_str());
 
 	// Obtain the file name that will store the authenticated message (plain text on first line and signature on second line).
 	cout << "4. Enter the output file name to store Alice’s authenticated message: " << endl;
