@@ -17,11 +17,11 @@ bool generate_key(int e, int n, int d, string file1, string file2)
     BIO             *bp_public = NULL, *bp_private = NULL;
  
     int             bits = 2048;
-    unsigned long   e = RSA_F4;
+    unsigned long   da = RSA_F4;
  
     // 1. generate rsa key
     bne = BN_new();
-    ret = BN_set_word(bne,e);
+    ret = BN_set_word(bne,da);
  
     r = RSA_new();
     ret = RSA_generate_key_ex(r, bits, bne, NULL);
