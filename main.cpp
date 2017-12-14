@@ -9,6 +9,16 @@
 
 using namespace std;
 
+bignum str_to_big(char* str) {
+     bignum result(0);
+     while (*str) {
+         result *= 10;
+         result += (*str - '0');
+         str = str + 1;
+     }
+     return result;
+ }
+
 bool generate_key(int e, int n, int d, string file1, string file2)
 {
     int             ret = 0;
@@ -47,16 +57,6 @@ bool generate_key(int e, int n, int d, string file1, string file2)
  
     return (ret == 1);
 }
-
-BIGNUM str_to_big(char* str) {
-     bignum result(0);
-     while (*str) {
-         result *= 10;
-         result += (*str - '0');
-         str = str + 1;
-     }
-     return result;
- }
 
 int main()
 {
