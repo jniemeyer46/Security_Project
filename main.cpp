@@ -59,7 +59,6 @@ int main() {
 	ofstream fout;
     unsigned char digest[SHA512_DIGEST_LENGTH];
     string AlicekeyFile, BobkeyFile, messageFile, message, authenticationFile;
-    string test = "openssl dgst -sha512 -sign AlicePrivate.pem -out signature.sign";
     int e, n, d;
     char string[1024];
 
@@ -100,7 +99,7 @@ int main() {
 	
 	test = test + messageFile;
 
-	system(test.c_str());
+	system(("openssl dgst -sha512 -sign AlicePrivate.pem -out signature.sign" + messageFile).c_str());
 
 	// Obtain the file name that will store the authenticated message (plain text on first line and signature on second line).
 	cout << "4. Enter the output file name to store Alice’s authenticated message: " << endl;
