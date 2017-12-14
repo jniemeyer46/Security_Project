@@ -65,7 +65,7 @@ int main()
     fin >> e >> n >> d;
     fin.close();
 
-    generate_key(static_cast<int> e, static_cast<int> n, static_cast<int> d, "AlicePrivKey.pem", "AlicePubKey.pem");
+    generate_key(static_cast<int>(e), static_cast<int>(n), static_cast<int>(d), "AlicePrivKey.pem", "AlicePubKey.pem");
 
     cout << e << " " << n << " " << d << endl;
 
@@ -78,7 +78,7 @@ int main()
     fin >> e >> n >> d;
     fin.close();
 
-    generate_key(static_cast<int> e, static_cast<int> n, static_cast<int> d, "BobPrivKey.pem", "BobPubKey.pem");
+    generate_key(static_cast<int>(e), static_cast<int>(n), static_cast<int>(d), "BobPrivKey.pem", "BobPubKey.pem");
 
     cout << e << " " << n << " " << d << endl;
 
