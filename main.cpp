@@ -9,8 +9,8 @@
 
 using namespace std;
 
-bignum str_to_big(char* str) {
-     bignum result(0);
+BIGNUM str_to_big(char* str) {
+     BIGNUM result(0);
      while (*str) {
          result *= 10;
          result += (*str - '0');
