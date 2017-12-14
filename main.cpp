@@ -4,6 +4,8 @@
 #include <fstream>
 #include <string.h>
 #include <openssl/sha.h>
+#include <openssl/rsa.h>
+#include <openssl/pem.h>
 
 using namespace std;
 
@@ -19,9 +21,12 @@ int main()
     cout << "1. Enter the name of the file that contains Alice’s public-private key pair: " << endl;
     cin >> AlicekeyFile;
 
+    // Open the file and parse line by line
     fin.open(AlicekeyFile.c_str());
     fin >> e >> n >> d;
     fin.close();
+
+    generate_key();
 
     cout << e << " " << n << " " << d << endl;
 
@@ -29,6 +34,7 @@ int main()
     cout << "2. Enter the name of the file that contains Bob’s public-private key pair: " << endl;
     cin >> BobkeyFile;
 
+    // Open the file and parse line by line
     fin.open(BobkeyFile.c_str());
     fin >> e >> n >> d;
     fin.close();
@@ -70,4 +76,49 @@ int main()
     printf("SHA512 digest: %s\n", mdString);
  
     return 0;
+}
+
+bool generate_key()
+{
+    int             ret = 0;
+    RSA             *r = NULL;
+    BIGNUM          *bne = NULL;
+    BIO             *bp_public = NULL, *bp_private = NULL;
+ 
+    int             bits = 2048;
+    unsigned long   e = RSA_F4;
+ 
+    // 1. generate rsa key
+    bne = BN_new();
+    ret = BN_set_word(bne,e);
+    if(ret != 1){
+        goto free_all;
+    }
+ 
+    r = RSA_new();
+    ret = RSA_generate_key_ex(r, bits, bne, NULL);
+    if(ret != 1){
+        goto free_all;
+    }
+ 
+    // 2. save public key
+    bp_public = BIO_new_file("public.pem", "w+");
+    ret = PEM_write_bio_RSAPublicKey(bp_public, r);
+    if(ret != 1){
+        goto free_all;
+    }
+ 
+    // 3. save private key
+    bp_private = BIO_new_file("private.pem", "w+");
+    ret = PEM_write_bio_RSAPrivateKey(bp_private, r, NULL, NULL, 0, NULL, NULL);
+ 
+    // 4. free
+free_all:
+ 
+    BIO_free_all(bp_public);
+    BIO_free_all(bp_private);
+    RSA_free(r);
+    BN_free(bne);
+ 
+    return (ret == 1);
 }
