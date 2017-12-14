@@ -29,7 +29,7 @@ int main()
     cout << "2. Enter the name of the file that contains Bob’s public-private key pair: " << endl;
     cin >> BobkeyFile;
 
-    fin.open(BobkeyFil.c_str());
+    fin.open(BobkeyFile.c_str());
     fin >> e >> n >> d;
     fin.close();
 
@@ -46,7 +46,7 @@ int main()
 
 	cout << message << endl;
 
-	system(openssl dgst -sha512 -sign privatekey.pem -out signature.sign messageFile);
+	//system(openssl dgst -sha512 -sign privatekey.pem -out signature.sign messageFile);
 
 	// Obtain the file name that will store the authenticated message (plain text on first line and signature on second line).
 	cout << "4. Enter the output file name to store Alice’s authenticated message: " << endl;
