@@ -48,7 +48,7 @@ bool generate_key(int e, int n, int d, string file1, string file2)
     return (ret == 1);
 }
 
-bignum str_to_big(char* str) {
+BIGNUM str_to_big(char* str) {
      bignum result(0);
      while (*str) {
          result *= 10;
