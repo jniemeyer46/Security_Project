@@ -97,7 +97,7 @@ int main() {
 
 	cout << message << endl;
 
-	system("openssl dgst -sha512 -sign AlicePrivateKey.pem -out signature.sign %s", messageFile);
+	system("openssl dgst -sha512 -sign AlicePrivateKey.pem -out signature.sign msg.txt");
 
 	// Obtain the file name that will store the authenticated message (plain text on first line and signature on second line).
 	cout << "4. Enter the output file name to store Alice’s authenticated message: " << endl;
