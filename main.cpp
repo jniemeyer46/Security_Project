@@ -63,6 +63,8 @@ int main() {
     int e, n, d;
     char string[1024];
 
+
+    /*------Read In Key File text------*/
     // Obtain the file name with Alice's public-private key
     cout << "1. Enter the name of the file that contains Alice’s public-private key pair: " << endl;
     cin >> AlicekeyFile;
@@ -75,6 +77,8 @@ int main() {
     // Would be used to generate public private key
     //generate_key(e, n, d, "AlicePrivKey.pem", "AlicePubKey.pem");
 
+
+    /*------Read In Key File text------*/
     // Obtain the file name with Bob's public-private key
     cout << "2. Enter the name of the file that contains Bob’s public-private key pair: " << endl;
     cin >> BobkeyFile;
@@ -87,6 +91,8 @@ int main() {
     // Would be used to generate public private key
     //generate_key(e, n, d, "BobPrivKey.pem", "BobPubKey.pem");
 
+
+    /*------Read In Plain text------*/
     // Obtain the file name that has the message in it
 	cout << "3. Enter the name of the file that contains Alice’s plaintext message: " << endl;
 	cin >> messageFile;
@@ -96,27 +102,31 @@ int main() {
 	getline(fin, message);
 	fin.close();
 
+	/*------Make A Signature------*/
+	// Uses the openssl command line command to create a signature
 	system(("openssl dgst -sha512 -sign AlicePrivate.pem -out signature.sign " + messageFile).c_str());
 
+	// Store the signature in a variable to create the authentication file
 	fin.open("signature.sign");
 	getline(fin, signature);
 	fin.close();
 
+	/*------Create the Authentication File------*/
 	// Obtain the file name that will store the authenticated message (plain text on first line and signature on second line).
 	cout << "4. Enter the output file name to store Alice’s authenticated message: " << endl;
 	cin >> authenticationFile;
 
-
-
+	// Create the authentication file with the appropriate format
 	fout.open(authenticationFile.c_str());
 	fout << message << endl;
 	fout << signature << endl;
 	fout.close();
 
+
 	// Obtain the file to store the verification step output
 	cout << "5. Enter the output file name to store the verification steps performed by Bob: " << endl;
 
-	//system(openssl dgst -sha512 -verify publickey.pem \ -signature signature.sign \ file.txt);
+	system("openssl dgst -sha512 -verify publickey.pem \ -signature signature.sign \ file.txt");
 
 	// Obtain the file name to store the encrypted message
 	cout << "6. Enter the output file name to store Alice’s encrypted message: " << endl;
