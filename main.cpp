@@ -106,26 +106,27 @@ int main() {
 	// Uses the openssl command line command to create a signature
 	system(("openssl dgst -sha512 -sign AlicePrivate.pem -out signature.sign " + messageFile).c_str());
 
-	// Store the signature in a variable to create the authentication file
-	fin.open("signature.sign");
-	while(getline(fin, test)) {
-		signature += test;
-	}
-	fin.close();
-
-	cout << signature << endl;
 
 	/*------Create the Authentication File------*/
 	// Obtain the file name that will store the authenticated message (plain text on first line and signature on second line).
 	cout << "4. Enter the output file name to store Alice’s authenticated message: " << endl;
 	cin >> authenticationFile;
 
+
+	// Open signature file
+	fin.open("signature.sign");
+
 	// Create the authentication file with the appropriate format
 	fout.open(authenticationFile.c_str());
 	fout << message << endl;
-	fout << signature << endl;
-	fout.close();
+	while(fin) {
+		getline(fin, test)
+		fout << test;
+	}
 
+	// Close the fstreams
+	fin.close();
+	fout.close();
 
 	// Obtain the file to store the verification step output
 	cout << "5. Enter the output file name to store the verification steps performed by Bob: " << endl;
