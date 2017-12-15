@@ -126,7 +126,7 @@ int main() {
 	// Obtain the file to store the verification step output
 	cout << "5. Enter the output file name to store the verification steps performed by Bob: " << endl;
 
-	system("openssl dgst -sha512 -verify publickey.pem \ -signature signature.sign \ file.txt");
+	system("openssl dgst -sha512 -verify AlicePublic.pem -signature signature.sign msg.txt");
 
 	// Obtain the file name to store the encrypted message
 	cout << "6. Enter the output file name to store Alice’s encrypted message: " << endl;
