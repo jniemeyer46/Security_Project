@@ -59,7 +59,7 @@ int main() {
 	ofstream fout;
     unsigned char digest[SHA512_DIGEST_LENGTH];
     string AlicekeyFile, BobkeyFile, messageFile, authenticationFile, verificationFile;
-    string message, signature, test;
+    string message, signature = "", test;
     int e, n, d;
     char string[1024];
 
