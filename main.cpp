@@ -127,9 +127,9 @@ int main() {
 	cout << "5. Enter the output file name to store the verification steps performed by Bob: " << endl;
 	cin >> verificationFile;
 
-	fout.open(verificationFile.c_str());
-	fout << system("openssl dgst -sha512 -verify AlicePublic.pem -signature signature.sign msg.txt");
-	fout.close();
+	//fout.open(verificationFile.c_str());
+	system(("openssl dgst -sha512 -verify AlicePublic.pem -signature signature.sign msg.txt -out " + verificationFile).c_str());
+	//fout.close();
 
 	// Obtain the file name to store the encrypted message
 	cout << "6. Enter the output file name to store Alice’s encrypted message: " << endl;
