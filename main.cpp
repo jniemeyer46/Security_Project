@@ -59,7 +59,7 @@ int main() {
 	ofstream fout;
     unsigned char digest[SHA512_DIGEST_LENGTH];
     string AlicekeyFile, BobkeyFile, messageFile, authenticationFile, verificationFile;
-    string message, signature;
+    string message, signature, test;
     int e, n, d;
     char string[1024];
 
@@ -108,8 +108,9 @@ int main() {
 
 	// Store the signature in a variable to create the authentication file
 	fin.open("signature.sign");
-	getline(fin, signature);
-	getline(fin, signature);
+	while(getline(fin, test)) {
+		signature += test;
+	}
 	fin.close();
 
 	/*------Create the Authentication File------*/
