@@ -133,8 +133,10 @@ int main() {
 	cout << "5. Enter the output file name to store the verification steps performed by Bob: " << endl;
 	cin >> verificationFile;
 
+
 	/*------Verify the contents of the file------*/
-	system(("openssl dgst -sha512 -verify AlicePublic.pem -signature signature.sign " + messageFile + " < " + verificationFile).c_str());
+	system(("openssl dgst -sha512 -verify AlicePublic.pem -signature signature.sign " + messageFile + " > " + verificationFile).c_str());
+
 
 	/*------Encrypt Message------*/
 	// Obtain the file name to store the encrypted message
@@ -142,6 +144,7 @@ int main() {
 	cin >> encryptedFile;
 
 	system(("openssl enc -aes-128-cbc -k ThisIsJustAPassword -in " + messageFile + " -out " + encryptedFile).c_str());
+
 
 	/*------Decrypt Message------*/
 	// Obtain the file name that will store the decryption of the plaintext message
