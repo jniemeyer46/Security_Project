@@ -120,7 +120,7 @@ int main() {
 	fout.open(authenticationFile.c_str());
 	fout << message << endl;
 	while(fin) {
-		getline(fin, test)
+		getline(fin, test);
 		fout << test;
 	}
 
