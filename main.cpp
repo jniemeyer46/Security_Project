@@ -59,7 +59,7 @@ int main() {
 	ifstream fin;
 	ofstream fout;
     unsigned char digest[SHA512_DIGEST_LENGTH];
-    string AlicekeyFile, BobkeyFile, messageFile, authenticationFile, verificationFile, encryptedFile;
+    string AlicekeyFile, BobkeyFile, messageFile, authenticationFile, verificationFile, encryptedFile, decryptedFile;
     string message, signature;
     int e, n, d;
     char string[1024];
@@ -146,6 +146,9 @@ int main() {
 	/*------Decrypt Message------*/
 	// Obtain the file name that will store the decryption of the plaintext message
 	cout << "7. Enter the output file name to store Bob’s decryption of Alice’s plaintext message: " << endl;
+	cin >> decryptedFile;
+
+	system(("openssl enc -d -aes-256-cbc -in " + encryptedFile + " -out " + decryptedFile + " -k symmetrickey").c_str());
  
     return 0;
 }
