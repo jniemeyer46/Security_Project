@@ -141,7 +141,7 @@ int main() {
 	cout << "6. Enter the output file name to store Alice’s encrypted message: " << endl;
 	cin >> encryptedFile;
 
-	system(("openssl enc -aes-128-cbc -in " + messageFile + " -out " + encryptedFile).c_str());
+	system(("openssl enc -aes-128-cbc -in " + messageFile + " -out " + encryptedFile + " -k symmetrickey").c_str());
 
 	/*------Decrypt Message------*/
 	// Obtain the file name that will store the decryption of the plaintext message
