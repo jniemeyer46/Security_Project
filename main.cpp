@@ -141,14 +141,14 @@ int main() {
 	cout << "6. Enter the output file name to store Alice’s encrypted message: " << endl;
 	cin >> encryptedFile;
 
-	system(("openssl enc -aes-128-cbc -in " + messageFile + " -out " + encryptedFile + " -k ljkabsdhg").c_str());
+	system(("openssl enc -aes-128-cbc -k ThisIsJustAPassword -in " + messageFile + " -out " + encryptedFile).c_str());
 
 	/*------Decrypt Message------*/
 	// Obtain the file name that will store the decryption of the plaintext message
 	cout << "7. Enter the output file name to store Bob’s decryption of Alice’s plaintext message: " << endl;
 	cin >> decryptedFile;
 
-	system(("openssl enc -d -aes-128-cbc -in " + encryptedFile + " -out " + decryptedFile + " -k ljkabsdhg").c_str());
+	system(("openssl enc -d -aes-128-cbc -k ThisIsJustAPassword -in " + encryptedFile + " -out " + decryptedFile).c_str());
  
     return 0;
 }
