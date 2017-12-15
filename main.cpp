@@ -133,15 +133,6 @@ int main() {
 
 	// Obtain the file name that will store the decryption of the plaintext message
 	cout << "7. Enter the output file name to store Bob’s decryption of Alice’s plaintext message: " << endl;
-    
-    SHA512((unsigned char*)&string, strlen(string), (unsigned char*)&digest);    
- 
-    char mdString[SHA512_DIGEST_LENGTH*2+1];
- 
-    for(int i = 0; i < SHA512_DIGEST_LENGTH; i++)
-         sprintf(&mdString[i*2], "%02x", (unsigned int)digest[i]);
- 
-    printf("SHA512 digest: %s\n", mdString);
  
     return 0;
 }
