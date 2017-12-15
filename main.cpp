@@ -58,7 +58,7 @@ int main() {
 	ifstream fin;
 	ofstream fout;
     unsigned char digest[SHA512_DIGEST_LENGTH];
-    string AlicekeyFile, BobkeyFile, messageFile, authenticationFile;
+    string AlicekeyFile, BobkeyFile, messageFile, authenticationFile, verificationFile;
     string message, signature;
     int e, n, d;
     char string[1024];
@@ -125,8 +125,11 @@ int main() {
 
 	// Obtain the file to store the verification step output
 	cout << "5. Enter the output file name to store the verification steps performed by Bob: " << endl;
+	cin >> verificationFile;
 
-	system("openssl dgst -sha512 -verify AlicePublic.pem -signature signature.sign msg.txt");
+	fout.open(verificationFile.c_str());
+	fout << system("openssl dgst -sha512 -verify AlicePublic.pem -signature signature.sign msg.txt");
+	fout.close();
 
 	// Obtain the file name to store the encrypted message
 	cout << "6. Enter the output file name to store Alice’s encrypted message: " << endl;
