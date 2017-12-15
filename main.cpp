@@ -148,7 +148,7 @@ int main() {
 	cout << "7. Enter the output file name to store Bob’s decryption of Alice’s plaintext message: " << endl;
 	cin >> decryptedFile;
 
-	system(("openssl enc -d -aes-256-cbc -in " + encryptedFile + " -out " + decryptedFile + " -k symmetrickey").c_str());
+	system(("openssl enc -d -aes-128-cbc -in " + encryptedFile + " -out " + decryptedFile + " -k symmetrickey").c_str());
  
     return 0;
 }
