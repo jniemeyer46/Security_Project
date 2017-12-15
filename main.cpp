@@ -4,6 +4,7 @@
 #include <fstream>
 #include <string.h>
 #include <openssl/sha.h>
+#include <openssl/aes.h>
 #include <openssl/rsa.h>
 #include <openssl/pem.h>
 
@@ -58,8 +59,8 @@ int main() {
 	ifstream fin;
 	ofstream fout;
     unsigned char digest[SHA512_DIGEST_LENGTH];
-    string AlicekeyFile, BobkeyFile, messageFile, authenticationFile, verificationFile;
-    string message, signature = "", test;
+    string AlicekeyFile, BobkeyFile, messageFile, authenticationFile, verificationFile, encryptedFile;
+    string message;
     int e, n, d;
     char string[1024];
 
@@ -133,13 +134,14 @@ int main() {
 	cin >> verificationFile;
 
 	/*------Verify the contents of the file------*/
-	system(("openssl dgst -sha512 -verify AlicePublic.pem -signature signature.sign msg.txt < " + verificationFile).c_str());
+	system(("openssl dgst -sha512 -verify AlicePublic.pem -signature signature.sign " + messageFile + " < " + verificationFile).c_str());
 
 	/*------Encrypt Message------*/
 	// Obtain the file name to store the encrypted message
 	cout << "6. Enter the output file name to store Alice’s encrypted message: " << endl;
-	system(("openssl enc -aes-128-cbc -in msg.txt -out encrypted.data").c_str());
+	cin >> encryptedFile;
 
+	system(("openssl enc -aes-128-cbc -in " + messageFile + " -out " + encryptedFile).c_str());
 
 	/*------Decrypt Message------*/
 	// Obtain the file name that will store the decryption of the plaintext message
