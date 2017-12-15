@@ -109,6 +109,7 @@ int main() {
 	// Store the signature in a variable to create the authentication file
 	fin.open("signature.sign");
 	getline(fin, signature);
+	getline(fin, signature);
 	fin.close();
 
 	/*------Create the Authentication File------*/
@@ -127,9 +128,7 @@ int main() {
 	cout << "5. Enter the output file name to store the verification steps performed by Bob: " << endl;
 	cin >> verificationFile;
 
-	//fout.open(verificationFile.c_str());
-	system(("openssl dgst -sha512 -verify AlicePublic.pem -signature signature.sign msg.txt -out " + verificationFile).c_str());
-	//fout.close();
+	system(("openssl dgst -sha512 -verify AlicePublic.pem -signature signature.sign msg.txt -out < " + verificationFile.txt).c_str());
 
 	// Obtain the file name to store the encrypted message
 	cout << "6. Enter the output file name to store Alice’s encrypted message: " << endl;
